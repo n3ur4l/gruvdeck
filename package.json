@@ -1,0 +1,27 @@
+{
+  "name": "gruvdeck",
+  "version": "1.0.0",
+  "description": "modular sequencing toolkit",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/n3ur4l/gruvdeck.git"
+  },
+  "keywords": [
+    "modualr",
+    "midi",
+    "eurorack",
+    "synthesizer",
+    "x0x",
+    "seqnecer"
+  ],
+  "author": "n3ur4l 5w1TCH <n3ur4l@mail.ru>",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/n3ur4l/gruvdeck/issues"
+  },
+  "homepage": "https://github.com/n3ur4l/gruvdeck#readme",
+  "dependencies": {
+    "lodash": "^4.17.11",
+    "midi": "^0.9.5"
+  }
+}

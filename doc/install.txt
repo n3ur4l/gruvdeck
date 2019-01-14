@@ -1,0 +1,9 @@
+#
+# install dependencies on arch linux 
+#
+
+sudo pacman -Suy base-devel
+sudo pacman -Suy python2
+sudo pacman -Suy alsa-lib alsa-utils
+sudo pacman -Suy nodejs-lts-dubnium
+sudo pacman -Suy npm
