@@ -65,4 +65,19 @@ time.at({ bar: 5, beat: 1}, (p) {
     console.log(p); // print current song position on the start of bar 5
 });
 
-``` 
+```
+
+## clock.Meter
+
+BPM counter for incomming clock.
+
+```
+input.on("clock", () => {
+    meter.step();
+    console.log(meter.bpm);
+});
+```
+
+# Examples
+
+For more detiled usage and combination examples look into 00_test folder. 

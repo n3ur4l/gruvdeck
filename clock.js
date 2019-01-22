@@ -35,7 +35,7 @@ class Divider extends Events {
  */
 
 class Time {
-    constructor(count = 4, note = 4, ppq = 24) {
+    constructor({count = 4, note = 4, ppq = 24}) {
         this.events  = {};
         this.run     = false;
         this.steps   = 0;
@@ -79,4 +79,30 @@ class Time {
     }
 }
 
-module.exports = { Divider, Time };
+/*
+ * BPM meter
+ */
+
+class Meter {
+    constructor({ppq = 24, span = 1}) {
+	this.ppq  = ppq;
+	this.span = span;
+	this.last = process.hrtime.bigint();
+	this.acc  = [];
+    	this.bpm  = 0;
+    }
+
+    step() {
+	let now   = process.hrtime.bigint();
+	this.acc.push(Number(now - this.last));
+	if(this.acc.length > (this.ppq * this.span)) {
+	    this.acc.shift();
+	    this.bpm  = Math.round(60 * 100000000000 * this.span) / this.acc.reduce((a,v) => { 
+		    return a + v; 
+	    }, 0) / 100; 
+	}
+	this.last = now;
+    }
+}
+
+module.exports = { Divider, Time, Meter };
