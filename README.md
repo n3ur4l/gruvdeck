@@ -50,18 +50,19 @@ output.play({note: 67, channel: 1, gate: 96, offset: 192});
 Clock divider triggers on every Xth step of the clock.
 
 ```javascript
-input.on("start", () => {
-    divider.start();
-});
-input.on("stop", () => {
-    divider.stop();
-    divider.reset();
-});
-input.on("clock", () => {
-    divider.stop();
-});
-
 divider.on(24, () => {
     // do something every quarter note
 });
+```
+
+## clock.Time
+
+Time line scheduler. Triggers an event at a set point into the song.
+
+```javascript
+const time = new clock.Time();
+time.at({ bar: 5, beat: 1}, (p) {
+    console.log(p); // print current song position on the start of bar 5
+});
+
 ``` 

@@ -30,4 +30,53 @@ class Divider extends Events {
     }
 }
 
-module.exports = { Divider };
+/*
+ * Time Line event scheduler
+ */
+
+class Time {
+    constructor(count = 4, note = 4, ppq = 24) {
+        this.events  = {};
+        this.run     = false;
+        this.steps   = 0;
+        this.beatLen = (ppq * 4) / note;
+        this.barLen  = this.beatLen * count;
+    }
+
+    step() {
+        if(this.run) {
+            Object.keys(this.events).map((k) => {
+                if(parseInt(k) === this.steps) {
+                    this.events[k](this.pos());
+                }
+            });
+            this.steps += 1;
+        }
+    }
+
+    pos() {
+        let pos  = this.steps % this.barLen + 1;
+        let bar  = Math.floor(this.steps / this.barLen) + 1;
+        let beat = Math.floor(this.steps % this.barLen / this.beatLen) + 1
+        return { bar, beat, pos, steps: this.steps }
+    }
+
+    start() {
+        this.run = true;
+    }
+
+    stop() {
+        this.run   = false;
+    }
+    
+    reset() {
+        this.steps = 0;
+    }
+
+    at({bar = 1, beat = 1}, func) {
+        let t = ((bar - 1) * this.barLen) + ((beat - 1) * this.beatLen)
+        this.events[t] = func;
+    }
+}
+
+module.exports = { Divider, Time };
