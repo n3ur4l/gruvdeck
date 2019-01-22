@@ -30,17 +30,38 @@ some time in the future. It can be polyphonic - each consecutive
 call to `output.play()` is **zipped** with the current queue, **not appended**
 to it. Actual polyphony depends on the output device.
 
-### play a chord with different note length
 
 ```javascript
+// play a chord with different note length
 output.play({note: 60, channel: 1, gate: 96}); // play c3 full note
 output.play({note: 64, channel: 1, gate: 48}); // play e3 half note
 output.play({note: 67, channel: 1, gate: 24}); // play g3 quarter note
 ```
 
-### play a chord with delayed note onset
 ```javascript
+// play a chord with delayed note onset
 output.play({note: 60, channel: 1, gate: 288});
 output.play({note: 64, channel: 1, gate: 192, offset: 96});
 output.play({note: 67, channel: 1, gate: 96, offset: 192});
 ```
+
+## clock.Divider
+
+Clock divider triggers on every Xth step of the clock.
+
+```javascript
+input.on("start", () => {
+    divider.start();
+});
+input.on("stop", () => {
+    divider.stop();
+    divider.reset();
+});
+input.on("clock", () => {
+    divider.stop();
+});
+
+divider.on(24, () => {
+    // do something every quarter note
+});
+``` 
