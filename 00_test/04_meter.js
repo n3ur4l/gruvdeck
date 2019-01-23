@@ -6,7 +6,7 @@ const midi    = require("../midi");
 const clock   = require("../clock"); 
 
 const input   = new midi.Input("Circuit 20:0");
-const meter   = new clock.Meter({span: 16});
+const meter   = new clock.Meter();
 const div     = new clock.Divider();
 
 input.on("clock", () => {

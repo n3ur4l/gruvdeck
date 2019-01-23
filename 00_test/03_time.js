@@ -1,7 +1,5 @@
 /*
- * simple kick snare hh pattern
- * midi clock from Novation Circuit via clock 
- * divider to trigger Circuits drums
+ * Timed arpeggio
  */
 
 const midi    = require("../midi");

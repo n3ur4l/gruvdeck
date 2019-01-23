@@ -35,7 +35,7 @@ class Divider extends Events {
  */
 
 class Time {
-    constructor({count = 4, note = 4, ppq = 24}) {
+    constructor({ count = 4, note = 4, ppq = 24 } = {}) {
         this.events  = {};
         this.run     = false;
         this.steps   = 0;
@@ -73,7 +73,7 @@ class Time {
         this.steps = 0;
     }
 
-    at({bar = 1, beat = 1}, func) {
+    at({bar = 1, beat = 1} = {}, func) {
         let t = ((bar - 1) * this.barLen) + ((beat - 1) * this.beatLen)
         this.events[t] = func;
     }
@@ -84,7 +84,7 @@ class Time {
  */
 
 class Meter {
-    constructor({ppq = 24, span = 1}) {
+    constructor({ span = 1, ppq = 24 } = {}) {
 	this.ppq  = ppq;
 	this.span = span;
 	this.last = process.hrtime.bigint();
@@ -97,12 +97,34 @@ class Meter {
 	this.acc.push(Number(now - this.last));
 	if(this.acc.length > (this.ppq * this.span)) {
 	    this.acc.shift();
-	    this.bpm  = Math.round(60 * 100000000000 * this.span) / this.acc.reduce((a,v) => { 
+	    this.bpm  = 60 * 1000000000 * this.span / this.acc.reduce((a,v) => { 
 		    return a + v; 
-	    }, 0) / 100; 
+	    }, 0); 
 	}
 	this.last = now;
     }
 }
 
-module.exports = { Divider, Time, Meter };
+/*
+ * Internal clock source
+ */
+
+class Pulse extends Events {
+    constructor({ bpm = 120, ppq = 24, adjust = 8000 } = {}) {
+        super();
+        var pulse    = (BigInt(60 * 1000000000) / BigInt(bpm) / BigInt(ppq)) - BigInt(adjust);
+        var next     = process.hrtime.bigint() + pulse;
+
+        const tick = () => {
+            let now = process.hrtime.bigint();
+            if (next <= process.hrtime.bigint()) {
+                next = now + pulse;
+                this.emit("clock");
+            }
+            process.nextTick(tick);
+        }
+        process.nextTick(tick);
+    }
+}
+
+module.exports = { Divider, Time, Meter, Pulse };
