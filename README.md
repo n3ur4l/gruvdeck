@@ -71,7 +71,7 @@ time.at({ bar: 5, beat: 1}, (p) {
 
 BPM counter for incomming clock.
 
-```
+```javascript
 input.on("clock", () => {
     meter.step();
     console.log(meter.bpm);
@@ -80,9 +80,10 @@ input.on("clock", () => {
 
 ## clock.Pulse
 
-Naive midi pulse implementation that turned out surprisingly accurate and usefull.
+Naive midi pulse implementation that turned out surprisingly accurate and useful.
 
 ```javascript
+const pulse = new clock.Pulse({ bpm: 100 });
 pulse.on("clock", () => {
     div.step();
 });
@@ -90,4 +91,4 @@ pulse.on("clock", () => {
 
 # Examples
 
-For more detiled usage and combination examples look into 00_test folder. 
+For more examples look into 00_test folder. 
