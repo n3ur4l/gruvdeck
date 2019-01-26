@@ -80,7 +80,7 @@ input.on("clock", () => {
 
 ## clock.Pulse
 
-Naive midi pulse implementation that turned out surprisingly accurate and useful.
+Naive midi clock implementation that turned out surprisingly accurate and useful.
 
 ```javascript
 const pulse = new clock.Pulse({ bpm: 100 });
@@ -89,10 +89,10 @@ pulse.on("clock", () => {
 });
 ```
 
-## x0x pattern loop sequencer
+## x0x.js
 
-x0x style trigger sequencer. Multiple trigger tracks, each trigger track can have 
-several modulation tracks.
+x0x style looping pattern sequencer. Multiple trigger tracks, each trigger track 
+can have several modulation tracks.
 
 ```javascript
 x0x.trig(       "kick",  "| k--- k--- k--- k--- |", (opt) => { console.log(opt) }); 
@@ -111,6 +111,17 @@ It is up to the callback function to decide what to do with the trigger and
 modulation data.
 
 There is no limit on pattern length or step count.
+
+## pattern.bjorklund
+
+Bjorklund algorithm for generating euclidean patterns
+
+```javascript
+pattern.bjorklund(2,4);  // 'x-x-'
+pattern.bjorklund(4,16); // 'x---x---x---x---'
+pattern.bjorklund(5,7);  // 'x--xx-xx'
+pattern.bjorklund(6,13); // 'x-x-x-x-x-x--'
+```
 
 # Examples
 

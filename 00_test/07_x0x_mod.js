@@ -1,5 +1,5 @@
 /*
- * simple kick snare hh pattern with x0x
+ * Bluesy kick snare hh triplet pattern with x0x
  */
 
 const midi   = require("../midi");
