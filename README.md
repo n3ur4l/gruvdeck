@@ -135,6 +135,20 @@ pattern.bjorklund(5,7);  // 'x--xx-xx'
 pattern.bjorklund(6,13); // 'x-x-x-x-x-x--'
 ```
 
+## circuit.{ Drum1, Drum2, Drum3, Drum4 }
+
+Novation Circuit drum tracks 1-4 with sample flip
+
+```javascript
+kit = circuit.Drum1(output);
+kit.set("k", 0);  // kick
+kit.set("c", 8);  // clap
+kit.set("h", 33); // hihat
+
+x0x.trig("drum", "| k-h- c-h- k-h- c-h- |", (opt) => { kit.trig(opt); });
+
+```
+
 # Examples
 
 For more examples look into 00_test folder. 

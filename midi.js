@@ -67,6 +67,16 @@ class Output {
         if (gate !== 0) {
             arr.push(...Array(gate - 1),[0x80 + channel - 1,pitch,0]);
         }
+        this.enqueue(arr);
+    }
+
+    cc({ number, channel = 1, value, offset = 0 }) {
+        let arr = Array(offset);
+        arr.push([0xB0 + channel - 1, number, value])
+        this.enqueue(arr);
+    }
+
+    enqueue(arr) {
         this.queue = _.zipWith(this.queue, arr, (a, b) => {
             if (a == undefined) { return b; }
             if (b == undefined) { return a; }
