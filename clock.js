@@ -112,8 +112,8 @@ class Meter {
 class Pulse extends Events {
     constructor({ bpm = 120, ppq = 24, adjust = 8000 } = {}) {
         super();
-        var pulse    = (BigInt(60 * 1000000000) / BigInt(bpm) / BigInt(ppq)) - BigInt(adjust);
-        var next     = process.hrtime.bigint() + pulse;
+        let pulse    = (BigInt(60 * 1000000000) / BigInt(bpm) / BigInt(ppq)) - BigInt(adjust);
+        let next     = process.hrtime.bigint() + pulse;
 
         const tick = () => {
             let now = process.hrtime.bigint();
