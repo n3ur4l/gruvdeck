@@ -89,6 +89,29 @@ pulse.on("clock", () => {
 });
 ```
 
+## x0x pattern loop sequencer
+
+x0x style trigger sequencer. Multiple trigger tracks, each trigger track can have 
+several modulation tracks.
+
+```javascript
+x0x.trig(       "kick",  "| k--- k--- k--- k--- |", (opt) => { console.log(opt) }); 
+x0x.trig(       "snare", "| ---- s--- ---- s--- |", (opt) => { console.log(opt) }); 
+x0x.mod ("acc", "snare", "| ---- ---- ---- a--- |"); 
+```
+
+The pattern is a text string, one character == one step. The seqencer steps through 
+the trigger pattern one character at a time, white space and bar marks `"|"` are 
+ignored. A dash is a rest, any other letter will trigger the callback function.
+
+The trigger character and any modulation data for the step is passed to the callback 
+function as an option object. `{ trig: "k" }` for the kick example above 
+and `{ trig: "s", acc: "-" }` or `{ trig: "s", acc: "a" }` for the snare pattern. 
+It is up to the callback function to decide what to do with the trigger and 
+modulation data.
+
+There is no limit on pattern length or step count.
+
 # Examples
 
 For more examples look into 00_test folder. 
