@@ -135,6 +135,15 @@ pattern.bjorklund(5,7);  // 'x--xx-xx'
 pattern.bjorklund(6,13); // 'x-x-x-x-x-x--'
 ```
 
+## mode.{ Ionian }
+
+Modal scale pitch generator
+
+```javascript
+const scale = new mode.Ionian({ root: 60 }); // returns C mjor scale
+let pitch = scale.stufe(5); // returns 5th degree of the scale
+```
+
 ## circuit.{ Drum1, Drum2, Drum3, Drum4 }
 
 Novation Circuit drum tracks 1-4 with sample flip
