@@ -19,11 +19,11 @@ input.on("clock", () => {
     output.step();
 });
 
-const drum = (note) => {
+const drum = (pitch) => {
     return ({ acc }) => {
         let velocity = 70;
         if (acc === "a") { velocity += 50; }
-        output.play({ note, channel: 10, velocity });
+        output.play({ pitch, channel: 10, velocity });
     }
 };
 

@@ -61,17 +61,34 @@ class Output {
         }
     }
 
-    play({ note, channel = 1, velocity = 90, gate = 0, offset = 0}) {
+    play({ pitch, channel = 1, velocity = 90, gate = 0, offset = 0}) {
         let arr = Array(offset);
-        arr.push([0x90 + channel - 1,note,velocity])
+        arr.push([0x90 + channel - 1,pitch,velocity])
         if (gate !== 0) {
-            arr.push(...Array(gate - 1),[0x80 + channel - 1,note,0]);
+            arr.push(...Array(gate - 1),[0x80 + channel - 1,pitch,0]);
         }
         this.queue = _.zipWith(this.queue, arr, (a, b) => {
             if (a == undefined) { return b; }
             if (b == undefined) { return a; }
             return [...a, ...b];
         });
+    }
+
+    repeat(note, { delay, repeat = 1, feedback }) {
+        this.play(note);
+        
+        if(note.offset === undefined) {
+            note.offset = 0;
+        }
+
+        while(repeat > 0) {
+            note.offset += delay;
+            if(feedback !== undefined) {
+                note = feedback(note);
+            }
+            this.play(note);
+            repeat -= 1;
+        }
     }
 }
 

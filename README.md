@@ -25,6 +25,8 @@ clocked from a clock source, on each clock step it shifts the
 queue and sends everything enqueued for the step to the assigned
 device.
 
+## midi.Output.play
+
 Use it to enqueue midi messages to be sent to a device right away or at
 some time in the future. It can be polyphonic - each consecutive 
 call to `output.play()` is **zipped** with the current queue, **not appended**
@@ -33,16 +35,26 @@ to it. Actual polyphony depends on the output device.
 
 ```javascript
 // play a chord with different note length
-output.play({note: 60, channel: 1, gate: 96}); // play c3 full note
-output.play({note: 64, channel: 1, gate: 48}); // play e3 half note
-output.play({note: 67, channel: 1, gate: 24}); // play g3 quarter note
+output.play({pitch: 60, channel: 1, gate: 96}); // play c3 full note
+output.play({pitch: 64, channel: 1, gate: 48}); // play e3 half note
+output.play({pitch: 67, channel: 1, gate: 24}); // play g3 quarter note
 ```
 
 ```javascript
 // play a chord with delayed note onset
-output.play({note: 60, channel: 1, gate: 288});
-output.play({note: 64, channel: 1, gate: 192, offset: 96});
-output.play({note: 67, channel: 1, gate: 96, offset: 192});
+output.play({pitch: 60, channel: 1, gate: 288});
+output.play({pitch: 64, channel: 1, gate: 192, offset: 96});
+output.play({pitch: 67, channel: 1, gate: 96, offset: 192});
+```
+
+## midi.Output.repeat
+
+Midi delay/ratchet effect. Plays a note and one or more repeats with optional feedback
+callback to change note parameters on every repeat.
+
+```javascript
+output.repeat( { pitch, 60, channel: 1, gate: 6 },
+              { delay: 12,  repeat: 3, feedback: (note) => { return note; } });
 ```
 
 ## clock.Divider

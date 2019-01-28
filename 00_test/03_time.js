@@ -25,40 +25,40 @@ input.on("clock", () => {
 
 time.at({bar: 1, beat: 1}, (p) => {
     console.log(p);
-    output.play({note: 60, channel: 1, gate: 16});
+    output.play({pitch: 60, channel: 1, gate: 16});
 });
 
 time.at({bar: 1, beat: 2}, (p) => {
     console.log(p);
-    output.play({note: 64, channel: 1, gate: 16});
+    output.play({pitch: 64, channel: 1, gate: 16});
 });
 
 time.at({bar: 1, beat: 3}, (p) => {
     console.log(p);
-    output.play({note: 67, channel: 1, gate: 16});
+    output.play({pitch: 67, channel: 1, gate: 16});
 });
 
 time.at({bar: 1, beat: 4}, (p) => {
     console.log(p);
-    output.play({note: 60, channel: 1, gate: 16});
+    output.play({pitch: 60, channel: 1, gate: 16});
 });
 
 time.at({bar: 2, beat: 1}, (p) => {
     console.log(p);
-    output.play({note: 64, channel: 1, gate: 16});
+    output.play({pitch: 64, channel: 1, gate: 16});
 });
 
 time.at({bar: 2, beat: 2}, (p) => {
     console.log(p);
-    output.play({note: 67, channel: 1, gate: 16});
+    output.play({pitch: 67, channel: 1, gate: 16});
 });
 
 time.at({bar: 2, beat: 3}, (p) => {
     console.log(p);
-    output.play({note: 60, channel: 1, gate: 16});
+    output.play({pitch: 60, channel: 1, gate: 16});
 });
 
 time.at({bar: 2, beat: 4}, (p) => {
     console.log(p);
-    output.play({note: 64, channel: 1, gate: 16});
+    output.play({pitch: 64, channel: 1, gate: 16});
 });

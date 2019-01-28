@@ -26,14 +26,14 @@ input.on("clock", () => {
 
 let snare = false;
 div.on(24, () => {
-    output.play({ note: 0x3c, channel: 10, velocity: 90 });
+    output.play({ pitch: 0x3c, channel: 10, velocity: 90 });
     // play the snare every other beat
     if(snare) { 
-        output.play({ note: 0x3e, channel: 10, velocity: 90 });
+        output.play({ pitch: 0x3e, channel: 10, velocity: 90 });
     }
     snare = !snare;
 });
 
 div.on(12, () => {
-    output.play({ note: 0x40, channel: 10, velocity: 90 });
+    output.play({ pitch: 0x40, channel: 10, velocity: 90 });
 });
