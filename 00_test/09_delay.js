@@ -17,11 +17,6 @@ input.on("clock", () => {
     output.step();
 });
 
-
-input.on("clock", () => { 
-    output.step();
-});
-
 div.on(6, () => {
     x0x.step();
 });
@@ -43,8 +38,8 @@ x0x.trig("arpeggio", "| 1-3- 5-7- 8-7- 5-3- |", ({ trig }) => {
     output.repeat({ pitch: scale[parseInt(trig) - 1],
                   channel: 1,
                  velocity: 90,
-                     gate: 4 },
-                  { delay: 60,
+                     gate: 2 },
+                  { delay: 30,
                    repeat: 1,
                  feedback: (note) => {
                      note.velocity -= 50;

@@ -17,11 +17,6 @@ input.on("clock", () => {
     output.step();
 });
 
-
-input.on("clock", () => { 
-    output.step();
-});
-
 div.on(6, () => {
     x0x.step();
 });
@@ -44,12 +39,12 @@ const play = ({ trig, ratchet }) => {
                  channel: 1 }
 
     if (ratchet === "r") {
-        output.repeat({ ...note, gate: 4 },
-                      { delay: 4, repeat: 4 });
-        output.play({ ...note, gate: 3, offset: 60 });
+        output.repeat({ ...note, gate: 2 },
+                      { delay: 2, repeat: 4 });
+        output.play({ ...note, gate: 3, offset: 30 });
     } else {
         output.repeat({ ...note, gate: 3 },
-                      { delay: 60, repeat: 1 });
+                      { delay: 30, repeat: 1 });
     }
 }
 
