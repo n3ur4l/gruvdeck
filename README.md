@@ -139,13 +139,31 @@ pattern.bjorklund(5,7);  // 'x--xx-xx'
 pattern.bjorklund(6,13); // 'x-x-x-x-x-x--'
 ```
 
-## mode.{ Ionian }
+## mode.*
 
 Modal scale pitch generator
 
 ```javascript
 const scale = new mode.Ionian({ root: 60 }); // returns C mjor scale
-let pitch = scale.stufe(5); // returns 5th degree of the scale
+```
+
+## mode.Mode.stufe(n)
+
+Returns a pitch for the scale degree
+
+```javascript
+let scale = mode.Major( { pitch: 60 });
+scale.stufe(1); // 60
+scale.stufe(5); // returns 5th degree of the scale
+```
+
+## mode.Mode.{ i, iv, v }
+
+Returns pitches for a chord in the scale
+
+```javascript
+let scale = mode.Minor( { pitch: 60 });
+scale.i(); // 60, 64, 67
 ```
 
 ## circuit.{ Drum1, Drum2, Drum3, Drum4 }
