@@ -57,6 +57,10 @@ output.repeat( { pitch, 60, channel: 1, gate: 6 },
               { delay: 12,  repeat: 3, feedback: (note) => { return note; } });
 ```
 
+## midi.Output.drain
+
+Send whatever is remaining in the queue to midi out right away.
+
 ## clock.Divider
 
 Clock divider triggers on every Xth step of the clock.

@@ -61,6 +61,12 @@ class Output {
         }
     }
 
+    drain() {
+        while(this.queue.length > 0) {
+            this.step();
+        }
+    }
+
     play({ pitch, channel = 1, velocity = 90, gate = 0, offset = 0}) {
         let arr = Array(offset);
         arr.push([0x90 + channel - 1,pitch,velocity])
